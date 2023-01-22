@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Index</title>
+    {% endif %}
+    <meta name="keywords" content="anime,animesearch,search,archive">
+    <meta name="description" content="Anime archive">
+    <meta name="author" content="I.I.">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css'%}">
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{% static 'styles/responsive.css'%}">
+    <!-- fevicon -->
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif"/>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{% static 'styles/jquery.mCustomScrollbar.min.css' %}">
+    {% block head %}
+
+    {% endblock head %}
+</head>
+<body>
+<div class="box">
+<div class="header_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}"></a></div>
+            </div>
+            <div class="col-sm-9">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/">AnimeArchive</a>
+                            {% if authenticated %}
+                            <a class="nav-item nav-link" href="/search/favorites">Favorites</a>
+                            <a class="nav-item nav-link" href="/accounts/profile">Profile</a>
+                            <a class="nav-item nav-link" href="/accounts/logout">Log out</a>
+                            {% endif %}
+                            {% if not authenticated %}
+                            <a class="nav-item nav-link" href="/accounts/login">Login</a>
+                            <a class="nav-item nav-link" href="/accounts/register">Register</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content_section">
+    {% block content %}
+
+    {% endblock content %}
+</div>
+</div>
+{% block scripts %}
+
+{% endblock scripts %}
+</body>
+</html>

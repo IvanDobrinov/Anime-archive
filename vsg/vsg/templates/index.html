@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+    <div class="container py-5 white">
+      <h1 class="form-header">Find your favourite anime!</h1>
+      <form method="POST">
+		{% csrf_token %}
+        <input type="search" name="search" class="search-input" id="search">
+        <button class="btn btn-primary" type="submit" id="submitSearch">Search</button>
+      </form>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'scripts/search.js' %}"></script>
+{% endblock %}

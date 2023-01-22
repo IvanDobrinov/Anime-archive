@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load utils %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/results.css' %}">
+{% endblock %}
+{% block content %}
+    {% csrf_token %}
+    {% if show_search %}
+        <div class="container py-5 white">
+          <h1 class="form-header">Search again</h1>
+          <form method="POST">
+            <input type="search" name="search" class="search-input" id="search" value="{{query}}">
+            <button class="btn btn-primary" type="submit" id="submitSearch">Search</button>
+          </form>
+        </div>
+    {% endif %}
+    {% if data %}
+    <div class="results white">
+        {% for result in data %}
+            <div class="result">
+                <div class="cover-image">
+                    <img src="{{result.images.jpg.image_url}}" alt="#">
+                    {% if authenticated %}
+                        {% if result.is_favorite %}
+                            <img class="favorite-icon" src="{% static 'images/heart-full.png' %}" alt="#" id="{{result.mal_id}}">
+                        {% else %}
+                            <img class="favorite-icon" src="{% static 'images/heart-empty.png' %}" alt="#" id="{{result.mal_id}}">
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="result-details">
+                    <h1>{{result.title}}</h1>
+                    <h3>{{result.title_japanese}}</h3>
+                    <ul>
+                        <li>Aired from: {{result.aired.from | parse_date}}</li>
+                        <li>
+                            Aired to: {% if not result.airing and result.aired.to %}
+                                {{result.aired.to | parse_date}}
+                            {% else %}
+                                Present
+                            {% endif %}
+                        </li>
+                        {% if result.themes %}
+                        <li>
+                            Themes:
+                            <div class="tags">
+                                {% for theme in result.themes %}
+                                <a href="{{theme.url}}">{{theme.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="white centered container container">
+        <h1>Hmmm... There's nothing here.</h1>
+        <h1>Find your favorites <a href="/">here</a>!</h1>
+    </div>
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'scripts/results.js' %}"></script>
+<script src="{% static 'scripts/search.js' %}"></script>
+{% endblock %}

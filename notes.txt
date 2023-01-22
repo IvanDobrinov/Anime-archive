@@ -1,0 +1,9 @@
+Html template I've used - "https://html.design/download/pullo-shoes-shop-template/", since I already made an html web page
+site as a course work for university with it.
+
+I'm not much of a design guy, so it is a little ugly and there are some kinks that need ironing out, but time's up.
+In the end I had fun with the prompt, so thank you for that. It's not my best work, but I relearned of some of my
+weaknesses that I had forgotten, working with a full frontend framework and on a single platform with lots of creature
+comforts built up over the years. In the end I might actually do a few iterations of this web app, as I certainly can't
+call it completed yet. I didn't think to time myself, so I'm not sure how long it took me to complete after I ran out the timer,
+but sans the recording, setting up the repo and a few interruptions, I think I worked on it for about six hours in total.
